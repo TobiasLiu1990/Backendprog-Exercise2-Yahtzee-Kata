@@ -15,20 +15,20 @@ public class YahtzeeTest {
     @Test
     void testSumOnes() {
         Yahtzee game = new Yahtzee(new Die[] {Die.ONE, Die.ONE, Die.ONE, Die.THREE, Die.FOUR});
-        assertEquals(3, game.sumPairsOfOnes(1));
+        assertEquals(3, game.countPoints(1));
     }
 
     @Test
     void testSumTwos() {
         Yahtzee game = new Yahtzee(new Die[] {Die.TWO, Die.TWO, Die.TWO, Die.THREE, Die.FOUR});
-        assertEquals(6, game.sumPairsOfOnes(2));
+        assertEquals(6, game.countPoints(2));
 
     }
 
     @Test
     void testPairs() {
         Yahtzee game = new Yahtzee(new Die[] {Die.FIVE, Die.FIVE, Die.ONE, Die.TWO, Die.THREE});
-        assertEquals(10, game.categorizeDice());
+        assertEquals(10, game.categorizeDice(Category.TWO_PAIRS));
     }
 
     @Test
