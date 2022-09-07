@@ -1,5 +1,7 @@
 # Yahtzee-Kata
 ## Specification from [Coding Dojo](https://codingdojo.org/kata/Yahtzee/)
+[![Java CI with Maven](https://github.com/Mayonnaisu/Yahtzee-Kata/actions/workflows/maven.yml/badge.svg)](https://github.com/Mayonnaisu/Yahtzee-Kata/actions/workflows/maven.yml)
+
 PGR209 - Lecture 2 - Repetition Yahtzee-Kata
 
 Steg 1: Kom i gang med testing via Github med Maven
@@ -9,20 +11,20 @@ Steg 1: Kom i gang med testing via Github med Maven
 - [x] En av dere laster ned prosjektet i IntelliJ: File > New > Project from version control
 - [x] Gjør om prosjektet til et Maven prosjekt
 - [x] PASS PÅ Å OPPRETTE EN .gitignore-fil
-- [ ] Legg til en test under src/test/java. Testen skal teste et yatsi-kast, for eksempel at dersom terningene plasseres på "sjanse" skal man få summen av øyne på terningene som score. For å få definert testen må du sette opp maven-compiler-plugin og legge til junit-jupiter som en dependency i pom.xml
-- [ ] Sjekk at testen kjører rødt, commit og push
-- [ ] Den andre utvikleren laster også ned prosjektet i IntelliJ. IntelliJ vil nå automatisk oppdage at det er et Maven-prosjekt
-- [ ] Implementer tilstrekkelig kode for at testen kjører grønt og commit
-- [ ] Opprett en ny test, for eksempel å teste at for når en spiller plasserer kastet på "enere" skal hen får summen av alle terningene med én som score
-- [ ] Sjekk at testen kjører rødt, commit og push
-- [ ] Den andre utvikleren implementerer koden som skal til for å kjøre grønt, committer og pusher
+- [x] Legg til en test under src/test/java. Testen skal teste et yatsi-kast, for eksempel at dersom terningene plasseres på "sjanse" skal man få summen av øyne på terningene som score. For å få definert testen må du sette opp maven-compiler-plugin og legge til junit-jupiter som en dependency i pom.xml
+- [x] Sjekk at testen kjører rødt, commit og push
+- [x] Den andre utvikleren laster også ned prosjektet i IntelliJ. IntelliJ vil nå automatisk oppdage at det er et Maven-prosjekt
+- [x] Implementer tilstrekkelig kode for at testen kjører grønt og commit
+- [x] Opprett en ny test, for eksempel å teste at for når en spiller plasserer kastet på "enere" skal hen får summen av alle terningene med én som score
+- [x] Sjekk at testen kjører rødt, commit og push
+- [x] Den andre utvikleren implementerer koden som skal til for å kjøre grønt, committer og pusher
 
 Steg 2: Github Actions
 
-- [ ] Github hjelper dere å opprette en action for å kjøre Maven (pass på at dere ikke velger DEPLOY med Maven). Se om dere finner den under Actions valget på github.com
-- [ ] Når dere setter opp Action-en vil den kjøre 0 tester. Dette er fordi maven-surefire-plugin som Maven bruker for å kjøre tester må ha en annen versjon enn det som er standard (se gjerne notatene fra forelesning for å finne ut hvordan). Dere må også passe på at dere bruker junit-jupiter og ikke junit-jupiter-api som dependency
-- [ ] Når dere har rettet pom.xml for å få Github Actions til å kjøre med Maven kan dere legge inn action-surefire-report (Lenker til en ekstern side.)
-- [ ] Når Actions kjører korrekt kan dere legge til en Badge i README.md
+- [x] Github hjelper dere å opprette en action for å kjøre Maven (pass på at dere ikke velger DEPLOY med Maven). Se om dere finner den under Actions valget på github.com
+- [x] Når dere setter opp Action-en vil den kjøre 0 tester. Dette er fordi maven-surefire-plugin som Maven bruker for å kjøre tester må ha en annen versjon enn det som er standard (se gjerne notatene fra forelesning for å finne ut hvordan). Dere må også passe på at dere bruker junit-jupiter og ikke junit-jupiter-api som dependency
+- [x] Når dere har rettet pom.xml for å få Github Actions til å kjøre med Maven kan dere legge inn action-surefire-report (Lenker til en ekstern side.)
+- [x] Når Actions kjører korrekt kan dere legge til en Badge i README.md
 
 Steg 3: Pull request
 
