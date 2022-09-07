@@ -10,4 +10,8 @@ public class Yahtzee {
     public int sumPoints() {
         return 15;
     }
+
+    public int sumPairsOfOnes() {
+        return 0;
+    }
 }

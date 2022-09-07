@@ -1,7 +1,6 @@
 package pgr209.Lecture2.Yahtzee;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class YahtzeeTest {
@@ -12,6 +11,13 @@ public class YahtzeeTest {
         Yahtzee game = new Yahtzee(new int[] {1,2,2,5,5});
 
         assertEquals(15, game.sumPoints());
+    }
+
+    @Test
+    void testSumOnes() {
+        Yahtzee game = new Yahtzee(new int[] {1,1,1,2,3,4});
+
+        assertEquals(3, game.sumPairsOfOnes());
     }
 
 }
