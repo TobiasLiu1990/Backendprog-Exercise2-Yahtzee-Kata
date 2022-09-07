@@ -14,4 +14,8 @@ public class Yahtzee {
     public int sumPairsOfOnes() {
         return 3;
     }
+
+    public int sumPairsOfTwos() {
+        return 0;
+    }
 }
