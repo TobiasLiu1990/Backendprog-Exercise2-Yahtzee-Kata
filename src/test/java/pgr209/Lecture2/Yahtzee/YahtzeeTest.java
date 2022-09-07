@@ -26,4 +26,10 @@ public class YahtzeeTest {
 
     }
 
+    @Test
+    void testPairs() {
+        Yahtzee game = new Yahtzee(new int[] {5,5,1,2,3});
+        assertEquals(10, game.categorizeDice());
+    }
+
 }

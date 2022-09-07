@@ -18,4 +18,8 @@ public class Yahtzee {
     public int sumPairsOfTwos() {
         return 6;
     }
+
+    public int categorizeDice() {
+        return 0;
+    }
 }
