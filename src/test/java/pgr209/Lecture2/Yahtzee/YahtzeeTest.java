@@ -18,4 +18,12 @@ public class YahtzeeTest {
         assertEquals(3, game.sumPairsOfOnes());
     }
 
+    @Test
+    void testSumTwos() {
+        Yahtzee game = new Yahtzee(new int[] {2,2,2,3,4});
+
+        assertEquals(6, game.sumPairsOfTwos());
+
+    }
+
 }
