@@ -45,11 +45,11 @@ public class Yahtzee {
         }
 
         //Now to find points if there are a PAIR, TWO_PAIRS etc...
-        if (inputCategory == Category.PAIR) return findEquals(dieFrequency, 1);
+        if (inputCategory == Category.PAIR) return findEquals(dieFrequency, 2);
         if (inputCategory == Category.TWO_PAIRS) return findEquals(dieFrequency, 2);
         if (inputCategory == Category.THREE_OF_A_KIND) return findEquals(dieFrequency, 3);
         if (inputCategory == Category.FOUR_OF_A_KIND) return findEquals(dieFrequency, 4);
-        if (inputCategory == Category.FULL_HOUSE) return findEquals(dieFrequency, 4);
+        if (inputCategory == Category.FULL_HOUSE) return findEquals(dieFrequency, 0);
         if (inputCategory == Category.YAHTZEE) return findEquals(dieFrequency, 5);
 
 
@@ -67,10 +67,12 @@ public class Yahtzee {
     //Find the highest valued pair.
     public int findEquals(HashMap<Die, Integer> dieFrequency, int diePairCategory) {
         int points = 0;
+        int pointsFullHouse = 0;
 
         //All kind of pairs.
-        if (diePairCategory >= 1 && diePairCategory <= 4) {
+        if (diePairCategory >= 0 && diePairCategory <= 4) {
             for (Die d : dieFrequency.keySet()) {
+                if (diePairCategory != 0) {
                 /*
                     If die exists more than eg 2 times and points will be 0 on first run, so the die-value will always be bigger -> true.
                     So if die exists 2 times -> Points = 2.
@@ -78,17 +80,31 @@ public class Yahtzee {
                         True -> set the new value.
                         Now we have the highest valued pair.
                 */
-                if (dieFrequency.get(d) >= diePairCategory && d.dieValue() > points) {
-                    points = d.dieValue();
+                    if (dieFrequency.get(d) >= diePairCategory && d.dieValue() > points) {          //Found biggest pair.
+                        points = d.dieValue();
+                    }
+                    //Found the highest valued PAIR!
+                } else {
+                    if (dieFrequency.get(d) == 2 || dieFrequency.get(d) == 3) {      //If there are 3 pairs and 2 pairs
+                        if (dieFrequency.get(d) == 3) {
+                            pointsFullHouse = d.dieValue() * 3;
+//                            dieFrequency.replace(d, 0);
+                        }
+                        if (dieFrequency.get(d) == 2) {
+                            pointsFullHouse += d.dieValue() * 2;
+//                            dieFrequency.replace(d, 0);
+                        }
+                    }
                 }
             }
-            return points * diePairCategory;
+            points += pointsFullHouse;
+
         }
 
-        //FULL HOUSE - 2 pair + 3pairs
-        if (diePairCategory == 4) {
-            return 0;
-        }
+        //Now to check FULL HOUSE
+        //After we found a pair, need to check if its the highest, then if there are 2 or 3.
+            //If highest + 3 pair - save.
+            //If lowest 2 pair - remove.
 
 
         //YAHTZEE - All dice land on same value
@@ -101,7 +117,12 @@ public class Yahtzee {
             return 0;
         }
 
-        return 9999;
+        if (diePairCategory == 0) {     //Condition for Full house
+            return points;
+        }
+        else {
+            return points * diePairCategory;
+        }
     }
 
 

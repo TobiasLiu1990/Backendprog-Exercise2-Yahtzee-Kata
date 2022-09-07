@@ -22,18 +22,29 @@ public class YahtzeeTest {
     void testSumTwos() {
         Yahtzee game = new Yahtzee(new Die[] {Die.TWO, Die.TWO, Die.TWO, Die.THREE, Die.FOUR});
         assertEquals(6, game.categorizeDice(Category.TWOS));
+    }
 
+    @Test
+    void testSumThrees() {
+        Yahtzee game = new Yahtzee(new Die[] {Die.THREE, Die.THREE, Die.THREE, Die.SIX, Die.FOUR});
+        assertEquals(9, game.categorizeDice(Category.THREES));
     }
 
     @Test
     void testPair() {
         Yahtzee game = new Yahtzee(new Die[] {Die.FIVE, Die.FIVE, Die.ONE, Die.TWO, Die.THREE});
-        assertEquals(10, game.categorizeDice(Category.TWO_PAIRS));
+        assertEquals(10, game.categorizeDice(Category.PAIR));
     }
 
     @Test
-    void testPairsBiggest() {
+    void testPairHighest() {
         Yahtzee game = new Yahtzee(new Die[] {Die.ONE, Die.ONE, Die.FIVE, Die.FIVE, Die.THREE});
+        assertEquals(10, game.categorizeDice(Category.PAIR));
+    }
+
+    @Test
+    void testTwoPair() {
+        Yahtzee game = new Yahtzee(new Die[] {Die.FIVE, Die.FIVE, Die.ONE, Die.ONE, Die.THREE});
         assertEquals(10, game.categorizeDice(Category.TWO_PAIRS));
     }
 
@@ -44,16 +55,21 @@ public class YahtzeeTest {
     }
 
     @Test
+    void testFourOfAKind() {
+        Yahtzee game = new Yahtzee(new Die[] {Die.ONE, Die.FIVE, Die.FIVE, Die.FIVE, Die.FIVE});
+        assertEquals(20, game.categorizeDice(Category.FOUR_OF_A_KIND));
+    }
+
+    @Test
     void testYahtzee() {
         Yahtzee game = new Yahtzee(new Die[] {Die.ONE, Die.ONE, Die.ONE, Die.ONE, Die.ONE});
         assertEquals(50, game.categorizeDice(Category.YAHTZEE));
     }
 
     @Test
-    void testDieValue() {
-        Die die = Die.TWO;
-        int a = die.dieValue();
-        System.out.println(a);
+    void testFullHouse() {
+        Yahtzee game = new Yahtzee(new Die[] {Die.ONE, Die.ONE, Die.TWO, Die.TWO, Die.TWO});
+        assertEquals(8, game.categorizeDice(Category.FULL_HOUSE));
     }
 
 }
