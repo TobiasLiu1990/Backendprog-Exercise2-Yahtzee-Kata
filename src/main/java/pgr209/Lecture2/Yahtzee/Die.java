@@ -1,5 +1,10 @@
 package pgr209.Lecture2.Yahtzee;
 
+/**
+ * This Enum is for returning the respective value of each die.
+ * Eg. A generated die that lands on 4, returns the value 4.
+ */
+
 public enum Die {
     ONE, TWO, THREE, FOUR, FIVE, SIX;
 
