@@ -1,11 +1,12 @@
 package pgr209.Lecture2.Yahtzee;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Yahtzee {
 
     private final Die[] dieArray;
-    private final Category[] pairPointsCategory = {Category.PAIR, Category.TWO_PAIRS, Category.THREE_OF_A_KIND, Category.FOUR_OF_A_KIND, Category.YAHTZEE, Category.FULL_HOUSE};
+    private final Category[] pairPointsCategory = {Category.PAIR, Category.TWO_PAIRS, Category.THREE_OF_A_KIND, Category.FOUR_OF_A_KIND, Category.YAHTZEE, Category.FULL_HOUSE}; //not used yet
 
     public Yahtzee(Die[] dieArray) {
         this.dieArray = dieArray;
@@ -33,8 +34,8 @@ public class Yahtzee {
             This will be used to calculate points depending on the category.
          */
 
-        //Switch used to find the points if the category are pairs of the same value.
-            //NOT PAIR, TWO_PAIRS etc...
+        //Switch to check the points according to the amount of dice in every category from the HashMap
+            //!! NOT PAIR, TWO_PAIRS etc... !!
         switch (inputCategory) {
             case ONES -> {return dieFrequency.get(Die.ONE); }
             case TWOS -> {return dieFrequency.get(Die.TWO) * 2; }
@@ -54,14 +55,13 @@ public class Yahtzee {
 
 
 
-
 //        for (Category c : pairPointsCategory) {
 //            if (inputCategory == c) {
 //                return findEquals(dieFrequency, 1); //kan 1 generaliseras?
 //            }
 //        }
 
-        return 11111;
+        return -1;
     }
 
     //Find the highest valued pair.
@@ -71,20 +71,23 @@ public class Yahtzee {
 
         //All kind of pairs.
         if (diePairCategory >= 0 && diePairCategory <= 4) {
+
             for (Die d : dieFrequency.keySet()) {
                 if (diePairCategory != 0) {
+
                 /*
-                    If die exists more than eg 2 times and points will be 0 on first run, so the die-value will always be bigger -> true.
-                    So if die exists 2 times -> Points = 2.
-                    Then on next run, is the current dies value larger than 2?
-                        True -> set the new value.
-                        Now we have the highest valued pair.
+                    If-statement below:
+                    Gets the highest valued pair:
+                    Checks if there are more than 2 dice && if the die's value is > points (which would be true the first time as points is initialized as = 0)
+                    So points will be assigned to the current highest value.
+                    Then it loops until it finds a higher valued pair.
                 */
-                    if (dieFrequency.get(d) >= diePairCategory && d.dieValue() > points) {          //Found biggest pair.
+                    if (dieFrequency.get(d) >= diePairCategory && d.dieValue() > points) {
                         points = d.dieValue();
                     }
-                    //Found the highest valued PAIR!
-                } else {
+                }
+                //Hopefully checks for FULL HOUSE. Now it should have found the most valued pairs.
+                else {
                     if (dieFrequency.get(d) == 2 || dieFrequency.get(d) == 3) {      //If there are 3 pairs and 2 pairs
                         if (dieFrequency.get(d) == 3) {
                             pointsFullHouse = d.dieValue() * 3;
@@ -98,10 +101,8 @@ public class Yahtzee {
                 }
             }
             points += pointsFullHouse;
-
         }
-
-        //Now to check FULL HOUSE
+        //FULL HOUSE
         //After we found a pair, need to check if its the highest, then if there are 2 or 3.
             //If highest + 3 pair - save.
             //If lowest 2 pair - remove.
@@ -126,23 +127,58 @@ public class Yahtzee {
     }
 
 
+    /*
+        Small straight: If the dice read 1,2,3,4,5, the player scores 15 (the sum of all the dice), otherwise 0.
 
+        Large straight: If the dice read 2,3,4,5,6, the player scores 20 (the sum of all the dice), otherwise 0.
+     */
 
 
     //Small and Large Straight
-    public int straight() {
-        //            if (diePairCategory == 5) {
-        //                int fullHouse = 5;
-        //
-        //                for (Die die : dieFrequency.keySet()) {
-        //                    if (dieFrequency.get(die) == 1 && fullHouse > 0) {
-        //                        fullHouse--;
-        //                    }
-        //                }
-        //            }
+    public String findStraight() {
+        /*
+            Sortera alla tärningar.                     CHECK
+            se om de är i ordning.                      CHECK
+            om värde 1 och 6 finns, inte straight
+         */
+        int[] findStraight = new int[5];
 
-        return 0;
+        for (int i = 0; i < dieArray.length; i++) {
+            findStraight[i] = dieArray[i].dieValue();
+        }
+
+        //Sorted the array, now to check the condition for small/large straight
+        Arrays.sort(findStraight);
+        System.out.println(Arrays.toString(findStraight));
+
+        if (findStraight[0] == 1) {     //If first die = 1 after sort, it cant be Large straight.
+            for (int i = 0; i < findStraight.length; i++) {
+                if (findStraight[i] != findStraight[i+1] - 1) {
+                    return "Wrong";
+                }
+            }
+            return "Small Straight";
+
+
+        } else if (findStraight[4] == 6) {
+
+        }
+
+
+        //***
+        for (int i = 0; i < findStraight.length -1; i++) {
+            if (findStraight[i] != findStraight[i+1] - 1) {
+                if (findStraight[i] == 1) {
+                    return "Small straight";
+                }
+                else {
+                    return "Large straight";
+                }
+            }
+        }
+        return "Nothing";
     }
+
 
     public int sumPoints() {
         int chancePoints = 0;

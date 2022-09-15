@@ -72,4 +72,16 @@ public class YahtzeeTest {
         assertEquals(8, game.categorizeDice(Category.FULL_HOUSE));
     }
 
+    @Test
+    void testSmallStraight() {
+        Yahtzee game = new Yahtzee(new Die[] {Die.ONE, Die.TWO, Die.THREE, Die.FOUR, Die.FIVE});
+        assertEquals("Small straight", game.findStraight());
+    }
+
+    @Test
+    void testLargeStraight() {
+        Yahtzee game = new Yahtzee(new Die[] {Die.TWO, Die.THREE, Die.FOUR, Die.FIVE, Die.SIX});
+        assertEquals("Small straight", game.findStraight());
+    }
+
 }
