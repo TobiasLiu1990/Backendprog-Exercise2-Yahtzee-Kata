@@ -54,7 +54,6 @@ public class Yahtzee {
         if (inputCategory == Category.YAHTZEE) return findEquals(dieFrequency, 5);
 
 
-
 //        for (Category c : pairPointsCategory) {
 //            if (inputCategory == c) {
 //                return findEquals(dieFrequency, 1); //kan 1 generaliseras?
@@ -166,7 +165,7 @@ public class Yahtzee {
 
 
         //***
-        for (int i = 0; i < findStraight.length -1; i++) {
+        for (int i = 0; i < findStraight.length - 1; i++) {
             if (findStraight[i] != findStraight[i+1] - 1) {
                 if (findStraight[i] == 1) {
                     return "Small straight";
